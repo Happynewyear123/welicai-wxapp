@@ -1,0 +1,82 @@
+<view class="page">
+    <view class="page__hd">
+        <view class="page__title">理财产品收益计算</view>
+        <view class="page__desc">小明投入1万购买某互联网季度理财产品，年化利率8%，期限91天，到期后收益多少？</view>
+    </view>
+    <view class="page__bd">
+        <view class="weui-cells__title">金额</view>
+        <view class="weui-cells">
+            <view class="weui-cell weui-cell_input">
+                <view class="weui-cell__bd">
+                    <input class="weui-input" type="number" placeholder="请输入投入金额" />
+                </view>
+                <view class="weui-cell__ft weui-cell__ft_rg">
+                    <radio-group class="radio-group" bindchange="backMoneyChange" >
+                    <label class="radio" wx:for="{{fMultiples}}" wx:key="value">
+                        <radio value="{{item.value}}" checked="{{item.checked}}"/>
+                        <span wx:if="{{item.checked}}" class="checked">{{item.name}}</span>
+                        <span wx:else>{{item.name}}</span>
+                    </label>
+                </radio-group>
+                </view>
+            </view>
+        </view>
+
+        <view class="weui-cells__title">年化利率</view>
+        <view class="weui-cells">
+            <view class="weui-cell weui-cell_input weui-cell_vcode" >
+                <view class="weui-cell__hd">
+                    <view class="weui-label">年化利率</view>
+                </view>
+                <view class="weui-cell__bd">
+                    <input class="weui-input" type="number" placeholder="请输入年化利率" />
+                </view>
+                <view class="weui-cell__ft">
+                    <span class="weui-vcode-btn">%</span>
+                </view>
+            </view>
+        </view>
+            
+
+            <view class="weui-cells__title">投资期限</view>
+            <view class="weui-cells">
+                <view class="weui-cell weui-cell_input">
+                    <view class="weui-cell__bd">
+                        <input class="weui-input" type="number" placeholder="请输入投资期限" />
+                    </view>
+                    <view class="weui-cell__ft weui-cell__ft_rg">
+                        <radio-group class="radio-group" bindchange="periodTypeChange" >
+                        <label class="radio" wx:for="{{periodTypes}}" wx:key="value">
+                            <radio value="{{item.value}}" checked="{{item.checked}}"/>
+                            <span wx:if="{{item.checked}}" class="checked">{{item.name}}</span>
+                            <span wx:else>{{item.name}}</span>
+                        </label>
+                    </radio-group>
+                    </view>
+                </view>
+            </view>
+            
+            <view class="weui-btn-area">
+                <button class="weui-btn" type="primary" bindtap="doit">确定</button>
+            </view>
+
+            <view wx:if="{{result}}" class="weui-form-preview result1-form">
+                <view class="weui-form-preview__hd">
+                <view class="weui-form-preview__item">
+                    <label class="weui-form-preview__label">最终收益</label>
+                    <em class="weui-form-preview__value">￥{{result}}</em>
+                </view>
+                </view>
+                <view class="weui-form-preview__bd">
+                <view class="weui-form-preview__item">
+                    <label class="weui-form-preview__label">日收益</label>
+                    <span class="weui-form-preview__value">{{dayInterest}}</span>
+                </view>
+                <view class="weui-form-preview__item">
+                    <label class="weui-form-preview__label">到期本息</label>
+                    <span class="weui-form-preview__value">{{total}}</span>
+                </view>
+                </view>
+            </view>
+    </view>
+</view>

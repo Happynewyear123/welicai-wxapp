@@ -1,0 +1,95 @@
+@import 'style/weui.wxss';
+
+page {
+    background-color: #f8f8f8;
+    font-size: 16px;
+    font-family: -apple-system-font, Helvetica Neue, Helvetica, sans-serif;
+}
+.page__hd {
+    padding: 20px;
+}
+.page__bd {
+    padding-bottom: 20px;
+}
+.page__bd_spacing {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.page__ft {
+    padding-bottom: 10px;
+    text-align: center;
+}
+
+.page__title {
+    text-align: left;
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.page__desc {
+    margin-top: 5px;
+    color: #888888;
+    text-align: left;
+    font-size: 14px;
+}
+
+.weui-cells__title + .weui-cells {
+    margin-top: 0;
+}
+.weui-cell__ft_rg {
+    margin-right: -5px;
+    margin-bottom: -6px;
+}
+.radio-group {
+    display: inline-block;
+    font-size: 0;
+    line-height: 1;
+}
+.radio-group .radio {
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+}
+.radio-group .radio radio {
+    opacity: 0;
+    outline: none;
+    position: absolute;
+    z-index: -1;
+    left: -999px;
+}
+.radio-group .radio span.checked {
+    color: #fff;
+    background-color: #3cc51f;
+    border-color: #3cc51f;
+}
+.radio-group .radio span {
+    min-width: 4em;
+    display: inline-block;
+    line-height: 1;
+    white-space: nowrap;
+    vertical-align: middle;
+    background: #fff;
+    border: 1px solid #3cc51f;
+    color: #3cc51f;
+    text-align: center;
+    box-sizing: border-box;
+    outline: none;
+    margin: 0;
+    position: relative;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+    padding: 5px 12px;
+    font-size: 12px;
+    border-radius: 0;
+}
+
+.radio-group .radio:first-child span {
+    border-radius: 4px 0 0 4px;
+}
+.radio-group .radio:not(:last-child) {
+    margin-right: -1px;
+}
+.radio-group .radio:last-child span {
+    border-radius: 0 4px 4px 0;
+}
