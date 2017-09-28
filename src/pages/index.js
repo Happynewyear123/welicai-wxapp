@@ -26,7 +26,7 @@ Page({
             },
             {
                 id: 'fang',
-                name: '买房 vs 投资',
+                name: '买房计算器',
                 open: false,
                 pages: [
                     {
@@ -34,7 +34,7 @@ Page({
                         url: 'fang/dai'
                     },
                     {
-                        name: '买房 vs 其他投资',
+                        name: '买房 vs 投资',
                         url: 'fang/touzi'
                     },
                     {
@@ -45,7 +45,7 @@ Page({
             },
             {
                 id: 'baoxian',
-                name: '保险 vs 投资',
+                name: '保险计算器',
                 open: false,
                 pages: [
                     {

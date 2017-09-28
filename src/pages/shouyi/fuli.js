@@ -1,8 +1,3 @@
-const periods = [];
-for (let i = 1; i <= 50; i++) {
-    periods.push(`${i}年后`);
-}
-
 Page({
     data: {
         // 数据
@@ -19,12 +14,12 @@ Page({
             {
                 name: '天',
                 value: 365,
-                checked: true
+                checked: false
             },
             {
                 name: '月',
                 value: 12,
-                checked: false
+                checked: true
             },
             {
                 name: '年',
@@ -47,9 +42,10 @@ Page({
 
     },
     periodTypeChange: function(e){
-        var radioItems = this.data.periodTypes;
-        for (var i = 0, len = radioItems.length; i < len; ++i) {
-            radioItems[i].checked = radioItems[i].value == e.detail.value;
+        let radioItems = this.data.periodTypes;
+        const val = e.detail.value;
+        for (let i = 0, len = radioItems.length; i < len; ++i) {
+            radioItems[i].checked = radioItems[i].value == val;
         }
 
         this.setData({
@@ -57,9 +53,10 @@ Page({
         });
     },
     backMoneyChange: function(e) {
-        var radioItems = this.data.fMultiples;
-        for (var i = 0, len = radioItems.length; i < len; ++i) {
-            radioItems[i].checked = radioItems[i].value == e.detail.value;
+        let radioItems = this.data.fMultiples;
+        const val = e.detail.value;
+        for (let i = 0, len = radioItems.length; i < len; ++i) {
+            radioItems[i].checked = radioItems[i].value == val;
         }
 
         this.setData({
