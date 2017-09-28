@@ -1,7 +1,7 @@
 <view class="page">
     <view class="page__hd">
-        <view class="page__title">理财计算器</view>
-        <view class="page__desc">收集了很多经常用到的理财计算方法，学好财务函数很重要。</view>
+        <view class="page__title">微理财计算器</view>
+        <view class="page__desc">收集了很多经常用到的理财计算方法，辅助我们做理财投资的决策。</view>
     </view>
     <view class="page__bd page__bd_spacing">
         <view class="kind-list">

@@ -43,6 +43,8 @@ gulp.task('build:pages', function() {
     .src(
       [
         'src/app.js',
+        'src/utils/**',
+        'src/image/**',
         'src/app.json',
         'src/app.wxss',
         'src/pages/**',

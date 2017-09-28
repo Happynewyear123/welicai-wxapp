@@ -1,1 +1,130 @@
-工资
+<view class="page">
+    <view class="page__hd">
+        <view class="page__title">税后工资&工资去向</view>
+        <view class="page__desc">小明月薪10000，到手却是8000多，其他钱都去了哪里了？</view>
+
+    </view>
+    <view class="page__bd">
+        <view class="weui-cells__title">工资信息</view>
+        <view class="weui-cells">
+            <view class="weui-cell weui-cell_input weui-cell_vcode">
+                <view class="weui-cell__hd">
+                    <view class="weui-label">税前工资</view>
+                </view>
+                <view class="weui-cell__bd">
+                    <input class="weui-input" bindinput="inputSalary" type="digit" placeholder="请输入工资" />
+                </view>
+                <view class="weui-cell__ft">
+                    <span class="weui-vcode-btn">元</span>
+                </view>
+            </view>
+            <view class="weui-cell weui-cell_select">
+                <view class="weui-cell__hd weui-cell__hd_in-select-after">
+                    <view class="weui-label">所在城市</view>
+                </view>
+                <view class="weui-cell__bd">
+                    <picker bindchange="cityPicker" value="{{cityIndex}}" range="{{citys}}">
+                        <view class="weui-select weui-select_in-select-after">{{citys[cityIndex]}}</view>
+                    </picker>
+                </view>
+            </view>
+
+        </view>
+
+        <view class="weui-cells__title">更多选项</view>
+        <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell weui-cell_input">
+                <view class="weui-cell__hd">
+                    <view class="weui-label">社保基数</view>
+                </view>
+                <view class="weui-cell__bd">
+                    <input class="weui-input" bindinput="inputSb" value="{{tsb}}" placeholder="请输入" type="digit" />
+                </view>
+            </view>
+            <view class="weui-cell weui-cell_input">
+                <view class="weui-cell__hd">
+                    <view class="weui-label">公积金基数</view>
+                </view>
+                <view class="weui-cell__bd">
+                    <input wx:if="{{!gjjSwitch}}" bindinput="inputGjj" disabled="true" class="weui-input" type="digit" value="{{tgjj}}" placeholder="请输入"
+                    />
+                    <input wx:else class="weui-input" value="{{tgjj}}" bindinput="inputGjj" type="digit"  placeholder="请输入" />
+                </view>
+            </view>
+            <view class="weui-cell weui-cell_switch">
+                <view class="weui-cell__bd">是否缴纳公积金</view>
+                <view class="weui-cell__ft">
+                    <switch bindchange="switchChange" checked="{{gjjSwitch}}" />
+                </view>
+            </view>
+        </view>
+        <view class="weui-btn-area">
+            <button class="weui-btn" type="primary" bindtap="doit">计算</button>
+        </view>
+        
+        <view hidden="{{hidden}}" class="weui-form-preview">
+            <view class="weui-form-preview__hd">
+                <view class="weui-form-preview__item">
+                    <view class="weui-form-preview__label">税后工资</view>
+                    <view class="weui-form-preview__value_in-hd">¥{{result.final_salary}}</view>
+                </view>
+            </view>
+            <view class="weui-form-preview__bd">
+                <view class="weui-form-preview__table">
+                    <view class="weui-form-preview__td">详细项目</view>
+                    <view class="weui-form-preview__td">个人</view>
+                    <view class="weui-form-preview__td">单位</view>
+                </view>
+                <view class="weui-form-preview__table">
+                    <view class="weui-form-preview__td">养老保险</view>
+                    <view class="weui-form-preview__td">{{result.personal_yanglao}}</view>
+                    <view class="weui-form-preview__td">{{result.org_yanglao}}</view>
+                </view>
+                <view class="weui-form-preview__table">
+                    <view class="weui-form-preview__td">公积金</view>
+                    <view class="weui-form-preview__td">{{result.personal_gjj}}</view>
+                    <view class="weui-form-preview__td">{{result.org_gjj}}</view>
+                </view>
+                <view class="weui-form-preview__table">
+                    <view class="weui-form-preview__td">医疗保险</view>
+                    <view class="weui-form-preview__td">{{result.personal_yiliao}}</view>
+                    <view class="weui-form-preview__td">{{result.org_yiliao}}</view>
+                </view>
+                <view class="weui-form-preview__table">
+                    <view class="weui-form-preview__td">失业保险</view>
+                    <view class="weui-form-preview__td">{{result.personal_shiye}}</view>
+                    <view class="weui-form-preview__td">{{result.org_shiye}}</view>
+                </view>
+                <view class="weui-form-preview__table">
+                    <view class="weui-form-preview__td">生育保险</view>
+                    <view class="weui-form-preview__td">{{result.personal_shengyu}}</view>
+                    <view class="weui-form-preview__td">{{result.org_shengyu}}</view>
+                </view>
+                <view class="weui-form-preview__table">
+                    <view class="weui-form-preview__td">工伤保险</view>
+                    <view class="weui-form-preview__td">{{result.personal_gongshang}}</view>
+                    <view class="weui-form-preview__td">{{result.org_gongshang}}</view>
+                </view>
+
+                <view class="weui-form-preview__table">
+                    <view class="weui-form-preview__td">共支出</view>
+                    <view class="weui-form-preview__td">{{result.personal_allpay}}</view>
+                    <view class="weui-form-preview__td">{{salary|0 + result.org_allpay|0}}</view>
+                </view>
+                <view class="weui-form-preview__table">
+                    <view class="weui-form-preview__td">应税工资</view>
+                    <view class="weui-form-preview__td">{{result.before_tax}}</view>
+                    <view class="weui-form-preview__td"></view>
+                </view>
+                <view class="weui-form-preview__table">
+                    <view class="weui-form-preview__td">所得税</view>
+                    <view class="weui-form-preview__td">{{result.tax}}</view>
+                    <view class="weui-form-preview__td"></view>
+                </view>
+            </view>
+        </view>
+        <view class="pie-wrap" hidden="{{hidden}}">
+            <canvas canvas-id="pieCanvas" class="canvas" style="height:300px;width:{{canvasWidth}}px" bindtouchstart="touchHandler"></canvas>
+        </view>
+    </view>
+</view>

@@ -93,3 +93,23 @@ page {
 .radio-group .radio:last-child span {
     border-radius: 0 4px 4px 0;
 }
+.weui-form-preview{
+    margin-top: 20px;
+}
+
+.weui-form-preview__table{
+    flex-direction: row;
+    display: flex;
+    width: 100%;
+}
+.weui-form-preview__td:first-child{
+    text-align: left;
+    min-width:4em;
+}
+.weui-form-preview__td{
+    color: #999;
+    width: 33.3333%;
+    justify-content: center;
+    text-align: right;
+}
+

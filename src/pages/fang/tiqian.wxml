@@ -1,0 +1,111 @@
+<view class="page">
+    <view class="page__hd">
+        <view class="page__title">房贷提前还款方式选择</view>
+        <view class="page__desc">提前还款50万，是选择缩短贷款年限，还是减少每月还款额度呢？</view>
+
+    </view>
+    <view class="page__bd">
+        <view class="weui-cells__title">贷款信息</view>
+        <view class="weui-cells">
+            <view class="weui-cell weui-cell_input weui-cell_vcode" >
+                <view class="weui-cell__hd">
+                    <view class="weui-label">贷款金额</view>
+                </view>
+                <view class="weui-cell__bd">
+                    <input class="weui-input" type="number" placeholder="请输入贷款金额" />
+                </view>
+                <view class="weui-cell__ft">
+                    <span class="weui-vcode-btn">万</span>
+                </view>
+            </view>
+            <view class="weui-cell weui-cell_input weui-cell_vcode" >
+                <view class="weui-cell__hd">
+                    <view class="weui-label">贷款金额</view>
+                </view>
+                <view class="weui-cell__bd">
+                    <input class="weui-input" value="{{rate}}" type="number" placeholder="请输入利率" />
+                </view>
+                <view class="weui-cell__ft">
+                    <span class="weui-vcode-btn">%</span>
+                </view>
+            </view>
+            <view class="weui-cell weui-cell_select">
+                <view class="weui-cell__hd weui-cell__hd_in-select-after">
+                    <view class="weui-label">还款方式</view>
+                </view>
+                <view class="weui-cell__bd">
+                    <picker bindchange="typeChange" value="{{typeIndex}}" range="{{types}}">
+                        <view class="weui-select weui-select_in-select-after">{{types[typeIndex]}}</view>
+                    </picker>
+                </view>
+            </view>
+            <view class="weui-cell weui-cell_select">
+                <view class="weui-cell__hd weui-cell__hd_in-select-after">
+                    <view class="weui-label">贷款年限</view>
+                </view>
+                <view class="weui-cell__bd">
+                    <picker bindchange="periodChange" value="{{periodIndex}}" range="{{periods}}">
+                        <view class="weui-select weui-select_in-select-after">{{periods[periodIndex]}}</view>
+                    </picker>
+                </view>
+            </view>
+        </view>
+
+        <view class="weui-cells__title">提前还贷信息</view>
+        <view class="weui-cells">
+            <view class="weui-cell weui-cell_input weui-cell_vcode" >
+                <view class="weui-cell__hd">
+                    <view class="weui-label">还款金额</view>
+                </view>
+                <view class="weui-cell__bd">
+                    <input class="weui-input" type="number" placeholder="请输入还款金额" />
+                </view>
+                <view class="weui-cell__ft">
+                    <span class="weui-vcode-btn">万</span>
+                </view>
+            </view>
+            <view class="weui-cell weui-cell_input">
+                <view class="weui-cell__hd">
+                    <view class="weui-label">首次还款月</view>
+                </view>
+                <view class="weui-cell__bd">
+                    <picker mode="date" fields="month" value="{{date1}}" start="2015-09-01" end="2017-09-01" bindchange="bindDate1Change">
+                        <view class="weui-input">{{date1}}</view>
+                    </picker>
+                </view>
+            </view>
+            <view class="weui-cell weui-cell_input">
+                <view class="weui-cell__hd">
+                    <view class="weui-label">提前还款月</view>
+                </view>
+                <view class="weui-cell__bd">
+                    <picker mode="date" fields="month" value="{{date2}}" start="2015-09-01" end="2050-09-01" bindchange="bindDate2Change">
+                        <view class="weui-input">{{date2}}</view>
+                    </picker>
+                </view>
+            </view>
+        </view>
+            <view class="weui-btn-area">
+                <button class="weui-btn" type="primary" bindtap="doit">计算</button>
+            </view>
+
+            <view wx:if="{{result}}" class="weui-form-preview result1-form">
+                <view class="weui-form-preview__hd">
+                <view class="weui-form-preview__item">
+                    <label class="weui-form-preview__label">最终收益</label>
+                    <em class="weui-form-preview__value">￥{{result}}</em>
+                </view>
+                </view>
+                <view class="weui-form-preview__bd">
+                <view class="weui-form-preview__item">
+                    <label class="weui-form-preview__label">日收益</label>
+                    <span class="weui-form-preview__value">{{dayInterest}}</span>
+                </view>
+                <view class="weui-form-preview__item">
+                    <label class="weui-form-preview__label">到期本息</label>
+                    <span class="weui-form-preview__value">{{total}}</span>
+                </view>
+                </view>
+            </view>
+    </view>
+</view>

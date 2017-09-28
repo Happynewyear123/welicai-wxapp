@@ -1,0 +1,5 @@
+
+.weui-form-preview__td{
+    width: 33.3333%;
+}
+
