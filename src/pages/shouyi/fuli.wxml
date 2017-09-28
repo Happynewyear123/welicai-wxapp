@@ -8,10 +8,10 @@
         <view class="weui-cells">
             <view class="weui-cell weui-cell_input">
                 <view class="weui-cell__bd">
-                    <input class="weui-input" type="number" placeholder="请输入投入金额" />
+                    <input class="weui-input" bindinput="inputMoney" type="number" placeholder="请输入投入金额" />
                 </view>
                 <view class="weui-cell__ft weui-cell__ft_rg">
-                    <radio-group class="radio-group" bindchange="backMoneyChange" >
+                    <radio-group class="radio-group" bindchange="multChange" >
                     <label class="radio" wx:for="{{fMultiples}}" wx:key="value">
                         <radio value="{{item.value}}" checked="{{item.checked}}"/>
                         <span wx:if="{{item.checked}}" class="checked">{{item.name}}</span>
@@ -26,20 +26,19 @@
         <view class="weui-cells">
             <view class="weui-cell weui-cell_input weui-cell_vcode" >
                 <view class="weui-cell__bd">
-                    <input class="weui-input" type="number" placeholder="请输入年化利率" />
+                    <input class="weui-input" bindinput="inputRate" type="digit" placeholder="请输入年化利率" />
                 </view>
                 <view class="weui-cell__ft">
                     <span class="weui-vcode-btn">%</span>
                 </view>
             </view>
         </view>
-            
 
         <view class="weui-cells__title">一期多长时间</view>
             <view class="weui-cells">
                 <view class="weui-cell weui-cell_input">
                     <view class="weui-cell__bd">
-                        <input class="weui-input" type="number" placeholder="请输入一期时间" />
+                        <input class="weui-input" bindinput="inputLong" type="number" placeholder="请输入一期时间" />
                     </view>
                     <view class="weui-cell__ft weui-cell__ft_rg">
                         <radio-group class="radio-group" bindchange="periodTypeChange" >
@@ -57,7 +56,7 @@
         <view class="weui-cells weui-cells_after-title">
             <view class="weui-cell weui-cell_input">
                 <view class="weui-cell__bd">
-                    <input class="weui-input" placeholder="请输入期数" />
+                    <input class="weui-input" bindinput="inputPeriod" type="number"  placeholder="请输入期数" />
                 </view>
             </view>
         </view>
@@ -66,21 +65,21 @@
                 <button class="weui-btn" type="primary" bindtap="doit">计算</button>
             </view>
 
-            <view wx:if="{{result}}" class="weui-form-preview result1-form">
+            <view wx:if="{{show}}" class="weui-form-preview">
                 <view class="weui-form-preview__hd">
-                <view class="weui-form-preview__item">
-                    <label class="weui-form-preview__label">最终收益</label>
-                    <em class="weui-form-preview__value">￥{{result}}</em>
-                </view>
+                    <view class="weui-form-preview__item">
+                        <view class="weui-form-preview__label">最终收益</view>
+                        <view class="weui-form-preview__value_in-hd">¥{{result}}</view>
+                    </view>
                 </view>
                 <view class="weui-form-preview__bd">
                 <view class="weui-form-preview__item">
-                    <label class="weui-form-preview__label">日收益</label>
-                    <span class="weui-form-preview__value">{{dayInterest}}</span>
+                    <label class="weui-form-preview__label">本金</label>
+                    <span class="weui-form-preview__value">{{principal}}</span>
                 </view>
                 <view class="weui-form-preview__item">
-                    <label class="weui-form-preview__label">到期本息</label>
-                    <span class="weui-form-preview__value">{{total}}</span>
+                    <label class="weui-form-preview__label">利息收入</label>
+                    <span class="weui-form-preview__value">{{interest}}</span>
                 </view>
                 </view>
             </view>

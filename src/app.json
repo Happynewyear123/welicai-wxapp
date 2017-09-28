@@ -1,19 +1,18 @@
 {
   "pages": [
-    "pages/gongzi/index",    
-    "pages/shouyi/index",
-    "example/input/input",
+    "pages/shouyi/dingtou",
     "pages/index",
     "pages/baoxian/index",
 
-    "pages/shouyi/dingtou",
-    "pages/shouyi/nifuli",
+    "pages/shouyi/index",
     "pages/shouyi/fuli",
+    "pages/shouyi/nifuli",
 
     "pages/fang/touzi",
     "pages/fang/tiqian",
-    "pages/fang/dai"
-
+    "pages/fang/dai",
+    "pages/gongzi/index"
+    
   ],
   "window": {
     "navigationBarTextStyle": "black",
