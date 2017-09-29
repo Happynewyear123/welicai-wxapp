@@ -1,30 +1,29 @@
 {
-  "pages": [
-    "pages/shouyi/dingtou",
-    "pages/index",
-    "pages/baoxian/index",
+    "pages": [
+        "pages/shouyi/nifuli",
+        "pages/index",
+        "pages/baoxian/index",
 
-    "pages/shouyi/index",
-    "pages/shouyi/fuli",
-    "pages/shouyi/nifuli",
+        "pages/shouyi/index",
+        "pages/shouyi/fuli",
+        "pages/shouyi/dingtou",
 
-    "pages/fang/touzi",
-    "pages/fang/tiqian",
-    "pages/fang/dai",
-    "pages/gongzi/index"
-    
-  ],
-  "window": {
-    "navigationBarTextStyle": "black",
-    "navigationBarTitleText": "理财计算器",
-    "navigationBarBackgroundColor": "#f8f8f8",
-    "backgroundColor": "#f8f8f8"
-  },
-  "networkTimeout": {
-    "request": 10000,
-    "connectSocket": 10000,
-    "uploadFile": 10000,
-    "downloadFile": 10000
-  },
-  "debug": true
+        "pages/fang/touzi",
+        "pages/fang/tiqian",
+        "pages/fang/dai",
+        "pages/gongzi/index"
+    ],
+    "window": {
+        "navigationBarTextStyle": "black",
+        "navigationBarTitleText": "微理财计算器",
+        "navigationBarBackgroundColor": "#f8f8f8",
+        "backgroundColor": "#f8f8f8"
+    },
+    "networkTimeout": {
+        "request": 10000,
+        "connectSocket": 10000,
+        "uploadFile": 10000,
+        "downloadFile": 10000
+    },
+    "debug": true
 }

@@ -117,7 +117,7 @@ Page({
             if (!data[id]) {
                 done &&
                     wx.showToast({
-                        title: '请填写2222正确字段2222',
+                        title: '请填写正确字段',
                         image: '../../image/warn.png'
                     });
                 done = false;
@@ -126,7 +126,7 @@ Page({
         if (done && data.periodType === 'day') {
             if (!data.days) {
                 wx.showToast({
-                    title: '请填写1111正确字段1111',
+                    title: '请填写正确字段',
                     image: '../../image/warn.png'
                 });
                 done = false;

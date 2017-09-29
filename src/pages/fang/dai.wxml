@@ -52,21 +52,21 @@
                 <button class="weui-btn" type="primary" bindtap="doit">计算</button>
             </view>
 
-            <view wx:if="{{result}}" class="weui-form-preview result1-form">
+            <view wx:if="{{result}}" class="weui-form-preview">
                 <view class="weui-form-preview__hd">
                 <view class="weui-form-preview__item">
-                    <label class="weui-form-preview__label">最终收益</label>
-                    <em class="weui-form-preview__value">￥{{result}}</em>
+                    <view class="weui-form-preview__label">最终收益</view>
+                    <view class="weui-form-preview__value_in-hd">￥{{result}}</view>
                 </view>
                 </view>
                 <view class="weui-form-preview__bd">
                 <view class="weui-form-preview__item">
-                    <label class="weui-form-preview__label">日收益</label>
-                    <span class="weui-form-preview__value">{{dayInterest}}</span>
+                    <view class="weui-form-preview__label">日收益</view>
+                    <view class="weui-form-preview__value">{{dayInterest}}</view>
                 </view>
                 <view class="weui-form-preview__item">
-                    <label class="weui-form-preview__label">到期本息</label>
-                    <span class="weui-form-preview__value">{{total}}</span>
+                    <view class="weui-form-preview__label">到期本息</view>
+                    <view class="weui-form-preview__value">{{total}}</view>
                 </view>
                 </view>
             </view>

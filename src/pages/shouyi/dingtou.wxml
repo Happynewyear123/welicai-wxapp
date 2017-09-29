@@ -76,22 +76,22 @@
             <view wx:if="{{show}}" class="weui-form-preview">
                 <view class="weui-form-preview__hd">
                 <view class="weui-form-preview__item">
-                    <label class="weui-form-preview__label">最终收益</label>
-                    <em class="weui-form-preview__value_in-hd">￥{{result}}</em>
+                    <view class="weui-form-preview__label">最终收益</view>
+                    <view class="weui-form-preview__value_in-hd">￥{{result}}</view>
                 </view>
                 </view>
                 <view class="weui-form-preview__bd">
                     <view class="weui-form-preview__item">
-                        <label class="weui-form-preview__label">总投入</label>
-                        <span class="weui-form-preview__value">{{total}}</span>
+                        <view class="weui-form-preview__label">总投入</view>
+                        <view class="weui-form-preview__value">{{total}}</view>
                     </view>
                     <view class="weui-form-preview__item">
-                        <label class="weui-form-preview__label">利息收入</label>
-                        <span class="weui-form-preview__value">{{interest}}</span>
+                        <view class="weui-form-preview__label">利息收入</view>
+                        <view class="weui-form-preview__value">{{interest}}</view>
                     </view>
                     <view class="weui-form-preview__item">
-                        <label class="weui-form-preview__label">总期数</label>
-                        <span class="weui-form-preview__value">{{rperiod}}期</span>
+                        <view class="weui-form-preview__label">总期数</view>
+                        <view class="weui-form-preview__value">{{rperiod}}期</view>
                     </view>
                 </view>
             </view>

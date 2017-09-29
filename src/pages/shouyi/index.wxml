@@ -69,12 +69,12 @@
                 </view>
                 <view class="weui-form-preview__bd">
                 <view class="weui-form-preview__item">
-                    <label class="weui-form-preview__label">日收益</label>
-                    <span class="weui-form-preview__value">{{dayInterest}}</span>
+                    <view class="weui-form-preview__label">日收益</view>
+                    <view class="weui-form-preview__value">{{dayInterest}}</view>
                 </view>
                 <view class="weui-form-preview__item">
-                    <label class="weui-form-preview__label">到期本息</label>
-                    <span class="weui-form-preview__value">{{total}}</span>
+                    <view class="weui-form-preview__label">到期本息</view>
+                    <view class="weui-form-preview__value">{{total}}</view>
                 </view>
                 </view>
             </view>

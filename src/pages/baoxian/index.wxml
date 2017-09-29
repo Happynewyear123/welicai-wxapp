@@ -114,7 +114,7 @@
         <view wx:if="{{show}}" class="weui-form-preview result-bx">
             <view class="weui-form-preview__hd">
                 <view class="weui-form-preview__item">
-                    <label class="weui-form-preview__label">投资指引</label>
+                    <view class="weui-form-preview__label">投资指引</view>
                 </view>
             </view>
             <view class="weui-form-preview__bd">
