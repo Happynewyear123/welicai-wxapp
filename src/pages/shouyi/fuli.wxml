@@ -1,7 +1,7 @@
 <view class="page">
     <view class="page__hd">
         <view class="page__title">复利收益计算</view>
-        <view class="page__desc">小明投入1万购买某理财产品，复利计算收益，每期1个月，那么连续投入3期之后收益多少？</view>
+        <view class="page__desc">小明投入1万购买某理财产品，年化10%，每期1个月，到期后选择连本带息继续购买，那么连续投入3期之后收益多少？</view>
     </view>
     <view class="page__bd">
         <view class="weui-cells__title">金额</view>

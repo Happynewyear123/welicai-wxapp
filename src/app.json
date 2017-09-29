@@ -1,11 +1,11 @@
 {
     "pages": [
-        "pages/shouyi/nifuli",
-        "pages/index",
         "pages/baoxian/index",
+        "pages/index",
 
         "pages/shouyi/index",
         "pages/shouyi/fuli",
+        "pages/shouyi/nifuli",
         "pages/shouyi/dingtou",
 
         "pages/fang/touzi",

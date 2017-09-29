@@ -156,8 +156,7 @@ Page({
             if (ptype === 1) {
                 period = fm * period;
             }
-            console.log(money, rate, period, fm);
-            let total = money * period;
+            let total = Math.floor((money * period * 100).toFixed(2)) / 100;
             let sum = -excel.FV(rate / fm, period, money, 1).toFixed(2);
             // console.log()
             let interest = (sum - total).toFixed(2);

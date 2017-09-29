@@ -113,3 +113,13 @@ page {
     text-align: right;
 }
 
+.strong{
+    display: inline-block;
+    font-weight: bold;
+}
+.red{
+    color: #ff3300;
+}
+.li{
+    text-align: left;
+}

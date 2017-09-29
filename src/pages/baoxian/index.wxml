@@ -11,7 +11,7 @@
                     <view class="weui-label">每期费用</view>
                 </view>
                 <view class="weui-cell__bd">
-                    <input class="weui-input" placeholder="请输入费用" />
+                    <input class="weui-input" bindinput="inputMoney" type="number" placeholder="请输入费用" />
                 </view>
                 <view class="weui-cell__ft">
                     <view class="weui-vcode-btn">元</view>
@@ -56,7 +56,7 @@
                     <view class="weui-label">返还金额</view>
                 </view>
                 <view class="weui-cell__bd">
-                    <input class="weui-input" type="number" placeholder="请输入金额" />
+                    <input class="weui-input" bindinput="inputBackMoney" type="digit" placeholder="请输入金额" />
                 </view>
                 <view class="weui-cell__ft weui-cell__ft_rg">
                     <radio-group class="radio-group" bindchange="backMoneyChange" >
@@ -73,7 +73,7 @@
                     <view class="weui-label">投资额度 × </view>
                 </view>
                 <view class="weui-cell__bd">
-                    <input class="weui-input" type="number" placeholder="请输入利率，如120" />
+                    <input class="weui-input" type="number" bindinput="inputRate" placeholder="请输入利率，如120" />
                 </view>
                 <view class="weui-cell__ft">
                     <span class="weui-vcode-btn">%</span>
@@ -88,7 +88,7 @@
                     <view class="weui-label">每期费用</view>
                 </view>
                 <view class="weui-cell__bd">
-                    <input class="weui-input" placeholder="请输入费用" />
+                    <input class="weui-input" bindinput="inputXMoney" type="number" placeholder="请输入费用" />
                 </view>
                 <view class="weui-cell__ft">
                     <view class="weui-vcode-btn">元</view>
@@ -100,18 +100,18 @@
                     <view class="weui-label">缴费周期</view>
                 </view>
                 <view class="weui-cell__bd">
-                    <picker bindchange="xTypeChange" value="{{xTypeIndex}}" range="{{fTypes}}">
-                        <view class="weui-select weui-select_in-select-after">{{fTypes[xTypeIndex]}}</view>
+                    <picker bindchange="xTypeChange" value="{{xTypeIndex}}" range="{{xTypes}}">
+                        <view class="weui-select weui-select_in-select-after">{{xTypes[xTypeIndex]}}</view>
                     </picker>
                 </view>
             </view>
         </view>
 
         <view class="weui-btn-area">
-            <button class="weui-btn" type="primary" bindtap="doit">确定</button>
+            <button class="weui-btn" type="primary" bindtap="doit">计算</button>
         </view>
 
-        <view wx:if="{{show}}" class="weui-form-preview result-bx">
+        <view wx:if="{{show}}" class="weui-form-preview ">
             <view class="weui-form-preview__hd">
                 <view class="weui-form-preview__item">
                     <view class="weui-form-preview__label">投资指引</view>
@@ -119,11 +119,12 @@
             </view>
             <view class="weui-form-preview__bd">
                 <view class="weui-form-preview__item">
-                    <ul>
-                        <li class="weui-form-preview__desc">返还型保险：<b>{{period}}</b>年内共投入<b>{{fSum}}万</b>，到期后实际收益为<b>{{fInterest}}万</b>，投资年化利率<b>{{fRate}}%</b>；</li>
-                        <li class="weui-form-preview__desc">纯消费型保险：<b>{{period}}</b>年内共投入<b>{{xSum}}万</b>，每缴费周期少支出<b>{{margin}}元</b>，若此部分钱拿来做投资，需达到年化利率<b>{{xRate}}%</b>，即可达到返还型保险收益。
-                        </li>
-                    </ul>
+                    <view>
+                        <view class="li weui-form-preview__desc">返还型保险：<view class="strong red">{{period}}</view>年内共投入<view class="strong red">{{fSum}}万</view>，到期后实际收益为<view class="strong red">{{fInterest}}元</view>，投资年化利率<view  class="strong red">{{fRate}}%</view>；
+                        </view>
+                        <view class="li weui-form-preview__desc">纯消费型保险：<view  class="strong red">{{period}}</view>年内共投入<view class="strong red">{{xSum}}万</view>，每{{fTypeIndex===1?'月':'年'}}少支出<view class="strong red">{{margin}}元</view>，若在此周期内这部分钱拿来做定投，需达到年化利率<view  class="strong red">{{xRate}}%</view>，即可达到（或超过）返还型保险收益。
+                        </view>
+                    </view>
                 </view>
             </view>
         </view>

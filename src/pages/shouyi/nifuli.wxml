@@ -1,7 +1,7 @@
 <view class="page">
     <view class="page__hd">
         <view class="page__title">复利投资收益率预算</view>
-        <view class="page__desc">小明今年20岁，需60岁准备一笔50万的养老金，每月可拿出300块，则选择什么年利率的投资产品</view>
+        <view class="page__desc">小明今年20岁，需60岁准备一笔50万的养老金，每月可拿出300块，则选择什么年利率的投资产品？</view>
     </view>
     <view class="page__bd">
         <view class="weui-cells__title">理财目标金额</view>
