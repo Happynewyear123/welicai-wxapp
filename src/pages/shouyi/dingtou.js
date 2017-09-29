@@ -1,79 +1,173 @@
+const excel = require('../../utils/excel.js');
+
 Page({
     data: {
         // 数据
-        showInput: true,
-        money: '',
-        rate: '',
-        period: '',
+        money: 0,
+        rate: 0,
+        days: 0,
+        period: 0,
         multiple: 1,
-        periodType: '365',
+
+        periodType: 'month',
+        longType: 0,
+
         result: 0,
         total: 0,
-        dayInterest: 0,
+        rperiod: 0,
+        interest: 0,
+        show: false,
+        showInput: false,
         // 数组、
-        radioItems: [
-            { name: '按年', value: '0' },
-            { name: '按月', value: '1', checked: true },
-            { name: '按天', value: '2', checked: false }
+        periodItems: [
+            { name: '按年', value: 'year', checked: false },
+            { name: '按月', value: 'month', checked: true },
+            { name: '按天', value: 'day', checked: false }
         ],
-        periodTypes: [
+        longItems: [
             {
                 name: '期数',
-                value: 1,
-                checked: false
+                value: 0,
+                checked: true
             },
             {
                 name: '年限',
-                value: 12,
-                checked: true
+                value: 1,
+                checked: false
             }
         ],
         fMultiples: [
             {
                 name: '万元',
                 value: 10000,
-                checked: true
+                checked: false
             },
             {
                 name: '元',
                 value: 1,
-                checked: false
+                checked: true
             }
         ]
     },
+    inputRate: function(e) {
+        this.setData({
+            rate: parseFloat(e.detail.value)
+        });
+    },
+    inputPeriod: function(e) {
+        this.setData({
+            period: parseInt(e.detail.value)
+        });
+    },
+    inputDays: function(e) {
+        this.setData({
+            days: parseInt(e.detail.value)
+        });
+    },
+    inputMoney: function(e) {
+        this.setData({
+            money: parseFloat(e.detail.value)
+        });
+    },
+
+    longTypeChange: function(e) {
+        const val = e.detail.value;
+        let radioItems = this.data.longItems;
+        for (let i = 0, len = radioItems.length; i < len; ++i) {
+            radioItems[i].checked = radioItems[i].value == val;
+        }
+
+        this.setData({
+            longType: val | 0,
+            longItems: radioItems
+        });
+    },
+
     periodTypeChange: function(e) {
         const val = e.detail.value;
-        let radioItems = this.data.periodTypes;
+        let radioItems = this.data.periodItems;
         for (let i = 0, len = radioItems.length; i < len; ++i) {
             radioItems[i].checked = radioItems[i].value == val;
         }
 
+        let showInput = val === 'day';
         this.setData({
-            periodTypes: radioItems
-        });
-    },
-    radioChange: function(e) {
-        const val = e.detail.value;
-        let radioItems = this.data.radioItems;
-        for (let i = 0, len = radioItems.length; i < len; ++i) {
-            radioItems[i].checked = radioItems[i].value == val;
-        }
-        
-        let showInput = val !== '2';
-        this.setData({
+            periodType: val,
             showInput: showInput,
-            radioItems: radioItems
+            periodItems: radioItems
         });
     },
-    backMoneyChange: function(e) {
-        const val = e.detail.value;
+    multChange: function(e) {
         let radioItems = this.data.fMultiples;
+        const val = e.detail.value | 0;
         for (let i = 0, len = radioItems.length; i < len; ++i) {
             radioItems[i].checked = radioItems[i].value == val;
         }
 
         this.setData({
+            multiple: val,
             fMultiples: radioItems
         });
+    },
+    doit: function() {
+        let done = true;
+        const t = this;
+        const data = t.data;
+        ['money', 'period', 'rate'].forEach(function(id) {
+            if (!data[id]) {
+                done &&
+                    wx.showToast({
+                        title: '请填写2222正确字段2222',
+                        image: '../../image/warn.png'
+                    });
+                done = false;
+            }
+        });
+        if (done && data.periodType === 'day') {
+            if (!data.days) {
+                wx.showToast({
+                    title: '请填写1111正确字段1111',
+                    image: '../../image/warn.png'
+                });
+                done = false;
+            }
+        }
+        // console.log(formula.FV(0.05/12, 1*12, 300, 1).toFixed(2))
+        if (done) {
+            let money = data.money * data.multiple;
+            let rate = data.rate / 100;
+            let period = data.period;
+            let percent = data.periodType;
+            let fm = 1;
+
+            switch (percent) {
+                case 'year':
+                    break;
+                case 'month':
+                    fm = 12;
+                    break;
+                case 'day':
+                    fm = 365 / data.days;
+                    break;
+            }
+
+            let ptype = data.longType;
+
+            if (ptype === 1) {
+                period = fm * period;
+            }
+            console.log(money, rate, period, fm);
+            let total = money * period;
+            let sum = -excel.FV(rate / fm, period, money, 1).toFixed(2);
+            // console.log()
+            let interest = (sum - total).toFixed(2);
+            t.setData({
+                show: true,
+                rperiod: period,
+                total: total,
+                result: sum,
+                interest: interest
+            });
+        }
     }
 });

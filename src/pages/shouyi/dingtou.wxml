@@ -8,10 +8,10 @@
         <view class="weui-cells">
             <view class="weui-cell weui-cell_input">
                 <view class="weui-cell__bd">
-                    <input class="weui-input" type="number" placeholder="请输入每期投入金额" />
+                    <input class="weui-input" bindinput="inputMoney" type="digit" placeholder="请输入每期投入金额" />
                 </view>
                 <view class="weui-cell__ft weui-cell__ft_rg">
-                    <radio-group class="radio-group" bindchange="backMoneyChange" >
+                    <radio-group class="radio-group" bindchange="multChange" >
                     <label class="radio" wx:for="{{fMultiples}}" wx:key="value">
                         <radio value="{{item.value}}" checked="{{item.checked}}"/>
                         <span wx:if="{{item.checked}}" class="checked">{{item.name}}</span>
@@ -25,9 +25,8 @@
         <view class="weui-cells__title">预期年化利率</view>
         <view class="weui-cells">
             <view class="weui-cell weui-cell_input weui-cell_vcode" >
-                
                 <view class="weui-cell__bd">
-                    <input class="weui-input" type="number" placeholder="请输入年化利率" />
+                    <input class="weui-input" bindinput="inputRate" type="digit" placeholder="请输入年化利率" />
                 </view>
                 <view class="weui-cell__ft">
                     <span class="weui-vcode-btn">%</span>
@@ -37,19 +36,18 @@
             
         <view class="weui-cells__title">周期</view>
         <view class="weui-cells weui-cells_after-title">
-            <radio-group bindchange="radioChange">
-                <label class="weui-cell weui-check__label" wx:for="{{radioItems}}" wx:key="value">
+            <radio-group bindchange="periodTypeChange">
+                <label class="weui-cell weui-check__label" wx:for="{{periodItems}}" wx:key="value">
                     <radio class="weui-check" value="{{item.value}}" checked="{{item.checked}}"/>
-
                     <view class="weui-cell__bd">{{item.name}}</view>
                     <view class="weui-cell__ft weui-cell__ft_in-radio" wx:if="{{item.checked}}">
                         <icon class="weui-icon-radio" type="success_no_circle" size="16"></icon>
                     </view>
                 </label>
             </radio-group>
-            <view class="weui-cell weui-cell_input" hidden="{{showInput ? true : false}}">
+            <view class="weui-cell weui-cell_input" hidden="{{showInput ? false : true}}">
                 <view class="weui-cell__bd">
-                    <input class="weui-input" placeholder="请输入多少天投入一笔" />
+                    <input class="weui-input" bindinput="inputDays" type="number" placeholder="请输入多少天投入一笔" />
                 </view>
             </view>
         </view>
@@ -57,11 +55,11 @@
             <view class="weui-cells">
                 <view class="weui-cell weui-cell_input">
                     <view class="weui-cell__bd">
-                        <input class="weui-input" type="number" placeholder="请输入期数/年限" />
+                        <input class="weui-input" bindinput="inputPeriod" type="number" placeholder="请输入期数/年限" />
                     </view>
                     <view class="weui-cell__ft weui-cell__ft_rg">
-                        <radio-group class="radio-group" bindchange="periodTypeChange" >
-                        <label class="radio" wx:for="{{periodTypes}}" wx:key="value">
+                        <radio-group class="radio-group" bindchange="longTypeChange" >
+                        <label class="radio" wx:for="{{longItems}}" wx:key="value">
                             <radio value="{{item.value}}" checked="{{item.checked}}"/>
                             <span wx:if="{{item.checked}}" class="checked">{{item.name}}</span>
                             <span wx:else>{{item.name}}</span>
@@ -75,22 +73,26 @@
                 <button class="weui-btn" type="primary" bindtap="doit">计算</button>
             </view>
 
-            <view wx:if="{{result}}" class="weui-form-preview result1-form">
+            <view wx:if="{{show}}" class="weui-form-preview">
                 <view class="weui-form-preview__hd">
                 <view class="weui-form-preview__item">
                     <label class="weui-form-preview__label">最终收益</label>
-                    <em class="weui-form-preview__value">￥{{result}}</em>
+                    <em class="weui-form-preview__value_in-hd">￥{{result}}</em>
                 </view>
                 </view>
                 <view class="weui-form-preview__bd">
-                <view class="weui-form-preview__item">
-                    <label class="weui-form-preview__label">日收益</label>
-                    <span class="weui-form-preview__value">{{dayInterest}}</span>
-                </view>
-                <view class="weui-form-preview__item">
-                    <label class="weui-form-preview__label">到期本息</label>
-                    <span class="weui-form-preview__value">{{total}}</span>
-                </view>
+                    <view class="weui-form-preview__item">
+                        <label class="weui-form-preview__label">总投入</label>
+                        <span class="weui-form-preview__value">{{total}}</span>
+                    </view>
+                    <view class="weui-form-preview__item">
+                        <label class="weui-form-preview__label">利息收入</label>
+                        <span class="weui-form-preview__value">{{interest}}</span>
+                    </view>
+                    <view class="weui-form-preview__item">
+                        <label class="weui-form-preview__label">总期数</label>
+                        <span class="weui-form-preview__value">{{rperiod}}期</span>
+                    </view>
                 </view>
             </view>
     </view>
