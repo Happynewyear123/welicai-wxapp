@@ -9,7 +9,7 @@
                     <view class="weui-label">贷款金额</view>
                 </view>
                 <view class="weui-cell__bd">
-                    <input class="weui-input" type="number" placeholder="请输入贷款金额" />
+                    <input class="weui-input" bindinput="inputMoney" type="number" placeholder="请输入贷款金额" />
                 </view>
                 <view class="weui-cell__ft">
                     <span class="weui-vcode-btn">万</span>
@@ -20,7 +20,7 @@
                     <view class="weui-label">贷款金额</view>
                 </view>
                 <view class="weui-cell__bd">
-                    <input class="weui-input" value="{{rate}}" type="number" placeholder="请输入利率" />
+                    <input class="weui-input" bindinput="inputRate" value="{{orgi_rate}}" type="digit" placeholder="请输入利率" />
                 </view>
                 <view class="weui-cell__ft">
                     <span class="weui-vcode-btn">%</span>
@@ -51,23 +51,36 @@
             <view class="weui-btn-area">
                 <button class="weui-btn" type="primary" bindtap="doit">计算</button>
             </view>
-
-            <view wx:if="{{result}}" class="weui-form-preview">
+            <view wx:if="{{show}}" class="weui-form-preview">
                 <view class="weui-form-preview__hd">
-                <view class="weui-form-preview__item">
-                    <view class="weui-form-preview__label">最终收益</view>
-                    <view class="weui-form-preview__value_in-hd">￥{{result}}</view>
-                </view>
+                    <view class="weui-form-preview__item">
+                        <view class="weui-form-preview__label">总利息</view>
+                        <view class="weui-form-preview__value_in">{{interest}}</view>
+                    </view>
+                    <view class="weui-form-preview__item">
+                        <view wx:if="{{typeIndex===0}}" class="weui-form-preview__label">月还款额：</view>
+                        <view wx:else class="weui-form-preview__label">每月还本金</view>
+                        <view wx:if="{{typeIndex===0}}" class="weui-form-preview__value_in">{{resultS[0]}}</view>
+                        <view wx:else class="weui-form-preview__value_in">{{resultP[0]}}</view>
+                    </view>
                 </view>
                 <view class="weui-form-preview__bd">
-                <view class="weui-form-preview__item">
-                    <view class="weui-form-preview__label">日收益</view>
-                    <view class="weui-form-preview__value">{{dayInterest}}</view>
-                </view>
-                <view class="weui-form-preview__item">
-                    <view class="weui-form-preview__label">到期本息</view>
-                    <view class="weui-form-preview__value">{{total}}</view>
-                </view>
+                    <scroll-view scroll-y style="height: 180px;" >
+                        <view class="weui-form-preview__table" >
+                            <view class="weui-form-preview__td">期数</view>
+                            <view wx:if="{{typeIndex===1}}" class="weui-form-preview__td">月还款</view>
+                            <view wx:else class="weui-form-preview__td">本金</view>
+                            <view class="weui-form-preview__td">利息</view>
+                            <view class="weui-form-preview__td">剩余贷款</view>
+                        </view>
+                        <view class="weui-form-preview__table" wx:for="{{resultI}}" wx:for-index="idx" wx:for-item="item">
+                            <view class="weui-form-preview__td">{{idx+1}}</view>
+                            <view wx:if="{{typeIndex===1}}" class="weui-form-preview__td">{{resultS[idx]}}</view>
+                            <view wx:else class="weui-form-preview__td">{{resultP[idx]}}</view>
+                            <view class="weui-form-preview__td">{{resultI[idx]}}</view>
+                            <view class="weui-form-preview__td">{{resultR[idx]}}</view>
+                        </view>
+                    </scroll-view>
                 </view>
             </view>
     </view>

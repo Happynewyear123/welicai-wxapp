@@ -1,0 +1,11 @@
+.weui-form-preview__hd .weui-form-preview__item{
+    line-height: 1.8em;
+}
+.weui-form-preview__td:first-child{
+    width: 10%;
+    text-align: center;
+    min-width: 10%;
+}
+.weui-form-preview__td{
+    width: 30%;
+}
