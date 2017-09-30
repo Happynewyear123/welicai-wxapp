@@ -6,38 +6,30 @@
     <view class="page__bd">
         <view class="weui-cells__title">房子总价格</view>
         <view class="weui-cells">
-            <view class="weui-cell weui-cell_input">
-                <view class="weui-cell__bd">
-                    <input class="weui-input" type="number" placeholder="请输入房子的价值" />
+            
+            <view class="weui-cell weui-cell_input weui-cell_vcode" >
+                <view class="weui-cell__hd">
+                    <view class="weui-label">房屋总价</view>
                 </view>
-                <view class="weui-cell__ft weui-cell__ft_rg">
-                    <radio-group class="radio-group" bindchange="zongjiaChange" >
-                        <label class="radio" wx:for="{{zongjiaMoneys}}" wx:key="value">
-                            <radio value="{{item.value}}" checked="{{item.checked}}"/>
-                            <span wx:if="{{item.checked}}" class="checked">{{item.name}}</span>
-                            <span wx:else>{{item.name}}</span>
-                        </label>
-                    </radio-group>
+                <view class="weui-cell__bd">
+                    <input class="weui-input" bindinput="inputTotal" type="digit" placeholder="请输入房子的总价" />
+                </view>
+                <view class="weui-cell__ft">
+                    <span class="weui-vcode-btn">万</span>
                 </view>
             </view>
         </view>
         <view class="weui-cells__title">房屋交易情况</view>
         <view class="weui-cells weui-cells_after-title">
-            <view class="weui-cell weui-cell_input">
+            <view class="weui-cell weui-cell_input weui-cell_vcode" >
                 <view class="weui-cell__hd">
                     <view class="weui-label">首付金额</view>
                 </view>
                 <view class="weui-cell__bd">
-                    <input class="weui-input" placeholder="请输入"/>
+                    <input class="weui-input" bindinput="inputShoufu" type="digit" placeholder="请输入首付金额" />
                 </view>
-                <view class="weui-cell__ft weui-cell__ft_rg">
-                    <radio-group class="radio-group" bindchange="shoufuChange" >
-                        <label class="radio" wx:for="{{shoufuMoney}}" wx:key="value">
-                            <radio value="{{item.value}}" checked="{{item.checked}}"/>
-                            <span wx:if="{{item.checked}}" class="checked">{{item.name}}</span>
-                            <span wx:else>{{item.name}}</span>
-                        </label>
-                    </radio-group>
+                <view class="weui-cell__ft">
+                    <span class="weui-vcode-btn">万</span>
                 </view>
             </view>
             <view class="weui-cell weui-cell_input weui-cell_vcode" >
@@ -45,20 +37,10 @@
                     <view class="weui-label">贷款利率</view>
                 </view>
                 <view class="weui-cell__bd">
-                    <input class="weui-input" type="number" value="{{rate}}" placeholder="请输入利率" />
+                    <input class="weui-input" bindinput="inputRate" value="{{orgi_rate}}" type="digit" placeholder="请输入利率" />
                 </view>
                 <view class="weui-cell__ft">
                     <span class="weui-vcode-btn">%</span>
-                </view>
-            </view>
-            <view class="weui-cell weui-cell_select">
-                <view class="weui-cell__hd weui-cell__hd_in-select-after">
-                    <view class="weui-label">贷款年限</view>
-                </view>
-                <view class="weui-cell__bd">
-                    <picker bindchange="periodChange" value="{{periodIndex}}" range="{{periods}}">
-                        <view class="weui-select weui-select_in-select-after">{{periods[periodIndex]}}</view>
-                    </picker>
                 </view>
             </view>
             <view class="weui-cell weui-cell_select">
@@ -71,17 +53,27 @@
                     </picker>
                 </view>
             </view>
+            <view class="weui-cell weui-cell_select">
+                <view class="weui-cell__hd weui-cell__hd_in-select-after">
+                    <view class="weui-label">贷款年限</view>
+                </view>
+                <view class="weui-cell__bd">
+                    <picker bindchange="periodChange" value="{{periodIndex}}" range="{{periods}}">
+                        <view class="weui-select weui-select_in-select-after">{{periods[periodIndex]}}</view>
+                    </picker>
+                </view>
+            </view>
 
             <view class="weui-cell weui-cell_input">
                 <view class="weui-cell__hd">
                     <view class="weui-label">交易税费</view>
                 </view>
                 <view class="weui-cell__bd">
-                    <input class="weui-input" placeholder="请输入"/>
+                    <input class="weui-input" type="digit" bindinput="inputTax" placeholder="请输入税费"/>
                 </view>
                 <view class="weui-cell__ft weui-cell__ft_rg">
-                    <radio-group class="radio-group" bindchange="shuiChange" >
-                        <label class="radio" wx:for="{{shuiMoney}}" wx:key="value">
+                    <radio-group class="radio-group" bindchange="taxChange" >
+                        <label class="radio" wx:for="{{taxMults}}" wx:key="value">
                             <radio value="{{item.value}}" checked="{{item.checked}}"/>
                             <span wx:if="{{item.checked}}" class="checked">{{item.name}}</span>
                             <span wx:else>{{item.name}}</span>
@@ -98,7 +90,7 @@
                     <view class="weui-label">预估涨幅</view>
                 </view>
                 <view class="weui-cell__bd">
-                    <input class="weui-input" type="number" value="{{wantRate}}" placeholder="请输入涨幅" />
+                    <input class="weui-input" bindinput="inputHopeRate" type="digit" value="{{orgi_hopeRate}}" placeholder="请输入涨幅" />
                 </view>
                 <view class="weui-cell__ft">
                     <span class="weui-vcode-btn">%</span>
@@ -109,7 +101,16 @@
                     <view class="weui-label">房租总收入</view>
                 </view>
                 <view class="weui-cell__bd">
-                    <input class="weui-input" type="number" placeholder="请输入期间房租总收入" />
+                    <input class="weui-input" bindinput="inputRent" type="number" placeholder="请输入" />
+                </view>
+                <view class="weui-cell__ft weui-cell__ft_rg">
+                    <radio-group class="radio-group" bindchange="rentChange" >
+                        <label class="radio" wx:for="{{rentMults}}" wx:key="value">
+                            <radio value="{{item.value}}" checked="{{item.checked}}"/>
+                            <span wx:if="{{item.checked}}" class="checked">{{item.name}}</span>
+                            <span wx:else>{{item.name}}</span>
+                        </label>
+                    </radio-group>
                 </view>
             </view>
             <view class="weui-cell weui-cell_select">
@@ -118,7 +119,7 @@
                 </view>
                 <view class="weui-cell__bd">
                     <picker bindchange="yearChange" value="{{yearsIndex}}" range="{{years}}">
-                        <view class="weui-select weui-select_in-select-after">{{years[yearsIndex]}}</view>
+                        <view class="weui-select weui-select_in-select-after">{{years[yearIndex]}}</view>
                     </picker>
                 </view>
             </view>
@@ -129,22 +130,46 @@
                 <button class="weui-btn" type="primary" bindtap="doit">计算</button>
             </view>
 
-            <view wx:if="{{result}}" class="weui-form-preview">
+            <view wx:if="{{show}}" class="weui-form-preview">
                 <view class="weui-form-preview__hd">
-                <view class="weui-form-preview__item">
-                    <view class="weui-form-preview__label">最终收益</view>
-                    <view class="weui-form-preview__value_in-hd">￥{{result}}</view>
+                    <view class="weui-form-preview__item">
+                        <view class="weui-form-preview__label">投资临界值</view>
+                        <view class="weui-form-preview__value_in-hd">{{result}}%</view>
+                    </view>
+                    </view>
+                    <view class="weui-form-preview__bd">
+                    <view class="weui-form-preview__item">
+                        <view class="weui-form-preview__label">房贷利息总和</view>
+                        <view class="weui-form-preview__value">{{interest}}</view>
+                    </view>
+                    <view class="weui-form-preview__item">
+                        <view class="weui-form-preview__label">预估收益</view>
+                        <view class="weui-form-preview__value">{{earnings}}</view>
+                    </view>
                 </view>
-                </view>
-                <view class="weui-form-preview__bd">
-                <view class="weui-form-preview__item">
-                    <view class="weui-form-preview__label">日收益</view>
-                    <view class="weui-form-preview__value">{{dayInterest}}</view>
-                </view>
-                <view class="weui-form-preview__item">
-                    <view class="weui-form-preview__label">到期本息</view>
-                    <view class="weui-form-preview__value">{{total}}</view>
-                </view>
+                
+            </view>
+            <view wx:if="{{show}}" class="weui-form-preview">
+                <view class="weui-form-preview__hd">
+                    <view class="weui-form-preview__item">
+                        <view class="weui-form-preview__label">投资指引</view>
+                    </view>
+                    </view>
+                    <view class="weui-form-preview__bd">
+                        <view class="weui-form-preview__item">
+                            <view>
+                                <view class="li weui-form-preview__desc">
+                                    在持有房子「<view class="strong red">{{year}}年</view>」，预估房价在此时间内会上涨「<view class="strong red">{{hopeRate}}%</view>」情况下：
+                                </view>
+                                <view class="li weui-form-preview__desc">
+                                    若其他渠道投资的年收益率 <view class="strong red">大于{{result}}%</view>，则自己投资理财收益更高；
+                                </view>
+                                <view class="li weui-form-preview__desc">
+                                    若其他渠道投资的年收益率 <view class="strong red">小于{{result}}%</view>，则买房收益更高
+                                </view>
+                            </view>
+                    </view>
+                    
                 </view>
             </view>
     </view>

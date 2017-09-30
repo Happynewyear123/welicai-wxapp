@@ -1,6 +1,5 @@
 {
     "pages": [
-        "pages/fang/tiqian",
         "pages/index",
 
         "pages/baoxian/index",
@@ -10,6 +9,7 @@
         "pages/shouyi/nifuli",
         "pages/shouyi/dingtou",
 
+        "pages/fang/tiqian",
         "pages/fang/touzi",
         "pages/fang/dai",
         
