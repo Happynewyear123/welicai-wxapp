@@ -41,16 +41,17 @@ Page({
             { name: '按年', value: 'year', checked: false },
             { name: '按月', value: 'month', checked: true }
         ],
+        longType: 1,
         longItems: [
             {
                 name: '期数',
                 value: 0,
-                checked: true
+                checked: false
             },
             {
                 name: '年限',
                 value: 1,
-                checked: false
+                checked: true
             }
         ],
         fMultiples: [

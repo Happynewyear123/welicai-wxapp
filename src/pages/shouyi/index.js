@@ -10,7 +10,7 @@ Page({
         rate: 6.0,
         period: 5,
         multiple: 10000,
-        periodType: 1,
+        periodType: 12,
         result: 0,
         total: 0,
         show: false,
@@ -25,12 +25,12 @@ Page({
             {
                 name: '月',
                 value: 12,
-                checked: false
+                checked: true
             },
             {
                 name: '年',
                 value: 1,
-                checked: true
+                checked: false
             }
         ],
         fMultiples: [

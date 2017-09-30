@@ -8,19 +8,19 @@ Page({
                 pages: [
                     {
                         name: '理财产品收益计算',
-                        url: 'shouyi/index'
+                        url: '/pages/shouyi/index'
                     },
                     {
                         name: '复利投资收益计算',
-                        url: 'shouyi/fuli'
+                        url: '/pages/shouyi/fuli'
                     },
                     {
                         name: '定期定额投资收益计算',
-                        url: 'shouyi/dingtou'
+                        url: '/pages/shouyi/dingtou'
                     },
                     {
                         name: '复利逆计算',
-                        url: 'shouyi/nifuli'
+                        url: '/pages/shouyi/nifuli'
                     }
                 ]
             },
@@ -31,15 +31,15 @@ Page({
                 pages: [
                     {
                         name: '房贷计算器',
-                        url: 'fang/dai'
+                        url: '/pages/fang/dai'
                     },
                     {
                         name: '买房 vs 投资',
-                        url: 'fang/touzi'
+                        url: '/pages/fang/touzi'
                     },
                     {
                         name: '提前还贷计算器',
-                        url: 'fang/tiqian'
+                        url: '/pages/fang/tiqian'
                     }
                 ]
             },
@@ -50,7 +50,7 @@ Page({
                 pages: [
                     {
                         name: '理财型保险靠谱吗？',
-                        url: 'baoxian'
+                        url: '/pages/baoxian/index'
                     }
                 ]
             },
@@ -61,7 +61,7 @@ Page({
                 pages: [
                     {
                         name: '个税&税后工资计算器',
-                        url: 'gongzi'
+                        url: '/pages/gongzi/index'
                     }
                 ]
             }

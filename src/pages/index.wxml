@@ -1,7 +1,7 @@
 <view class="page">
     <view class="page__hd">
         <view class="page__title">微理财计算器</view>
-        <view class="page__desc">收集了很多经常用到的理财计算方法，辅助我们做理财投资的决策。</view>
+        <view class="page__desc">收集了很多经常用到的理财计算方法，辅助用户做理财投资决策。</view>
     </view>
     <view class="page__bd page__bd_spacing">
         <view class="kind-list">
@@ -12,7 +12,7 @@
                     </view>
                     <view class="kind-list__item-bd {{item.open ? 'kind-list__item-bd_show' : ''}}">
                         <view class="weui-cells {{item.open ? 'weui-cells_show' : ''}}">
-                            <block wx:for="{{item.pages}}" wx:for-item="page" wx:key="*this">
+                            <block wx:for="{{item.pages}}" wx:for-item="page" wx:key="index">
                                 <navigator url="{{page.url}}" class="weui-cell weui-cell_access">
                                     <view class="weui-cell__bd">{{page.name}}</view>
                                     <view class="weui-cell__ft weui-cell__ft_in-access"></view>
