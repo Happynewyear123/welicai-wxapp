@@ -1,17 +1,18 @@
 {
     "pages": [
-        "pages/fang/dai",
+        "pages/fang/tiqian",
         "pages/index",
 
         "pages/baoxian/index",
-        
+
         "pages/shouyi/index",
         "pages/shouyi/fuli",
         "pages/shouyi/nifuli",
         "pages/shouyi/dingtou",
 
         "pages/fang/touzi",
-        "pages/fang/tiqian",
+        "pages/fang/dai",
+        
         "pages/gongzi/index"
     ],
     "window": {

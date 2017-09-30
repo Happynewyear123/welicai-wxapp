@@ -1,0 +1,16 @@
+
+.weui-form-preview__table{
+    border-bottom: 1px solid #d9d9d9;
+}
+.weui-form-preview__table:last-child{
+    border-bottom: 0 none;
+}
+.weui-form-preview__td:first-child{
+    width: 30%;
+    text-align: center;
+    min-width: 10%;
+}
+.weui-form-preview__td{
+    text-align: center;
+    width: 35%;
+}

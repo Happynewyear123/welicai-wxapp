@@ -55,7 +55,6 @@ Page({
             let temp;
             let total = data.money;
             let dai = total;
-            console.log(period, dai, rate);
             if (type === 1) {
                 // 等额本息
                 let pmt = parseFloat(

@@ -1,7 +1,7 @@
 <view class="page">
     <view class="page__hd">
         <view class="page__title">房贷提前还款方式选择</view>
-        <view class="page__desc">提前还款50万，是选择缩短贷款年限，还是减少每月还款额度呢？</view>
+        <view class="page__desc">小明攒了50万，准备提前还房贷，是选择缩短贷款年限，还是减少每月还款额度呢？</view>
 
     </view>
     <view class="page__bd">
@@ -12,7 +12,7 @@
                     <view class="weui-label">贷款金额</view>
                 </view>
                 <view class="weui-cell__bd">
-                    <input class="weui-input" type="number" placeholder="请输入贷款金额" />
+                    <input class="weui-input" bindinput="inputMoney" type="number" placeholder="请输入贷款金额" />
                 </view>
                 <view class="weui-cell__ft">
                     <span class="weui-vcode-btn">万</span>
@@ -20,10 +20,10 @@
             </view>
             <view class="weui-cell weui-cell_input weui-cell_vcode" >
                 <view class="weui-cell__hd">
-                    <view class="weui-label">贷款金额</view>
+                    <view class="weui-label">贷款利率</view>
                 </view>
                 <view class="weui-cell__bd">
-                    <input class="weui-input" value="{{rate}}" type="number" placeholder="请输入利率" />
+                    <input class="weui-input" bindinput="inputRate" value="{{orgi_rate}}" type="digit" placeholder="请输入利率" />
                 </view>
                 <view class="weui-cell__ft">
                     <span class="weui-vcode-btn">%</span>
@@ -58,7 +58,7 @@
                     <view class="weui-label">还款金额</view>
                 </view>
                 <view class="weui-cell__bd">
-                    <input class="weui-input" type="number" placeholder="请输入还款金额" />
+                    <input class="weui-input" bindinput="inputReMoney" type="number" placeholder="请输入还款金额" />
                 </view>
                 <view class="weui-cell__ft">
                     <span class="weui-vcode-btn">万</span>
@@ -69,8 +69,8 @@
                     <view class="weui-label">首次还款月</view>
                 </view>
                 <view class="weui-cell__bd">
-                    <picker mode="date" fields="month" value="{{date1}}" start="2015-09-01" end="2017-09-01" bindchange="bindDate1Change">
-                        <view class="weui-input">{{date1}}</view>
+                    <picker mode="date" fields="month" value="{{smonth}}" start="{{start}}" end="{{end}}" bindchange="bindStartChange">
+                        <view class="weui-input">{{smonth}}</view>
                     </picker>
                 </view>
             </view>
@@ -79,8 +79,8 @@
                     <view class="weui-label">提前还款月</view>
                 </view>
                 <view class="weui-cell__bd">
-                    <picker mode="date" fields="month" value="{{date2}}" start="2015-09-01" end="2050-09-01" bindchange="bindDate2Change">
-                        <view class="weui-input">{{date2}}</view>
+                    <picker mode="date" fields="month" value="{{fmonth}}" start="{{start}}" end="{{end}}" bindchange="bindFinishChange">
+                        <view class="weui-input">{{fmonth}}</view>
                     </picker>
                 </view>
             </view>
@@ -88,23 +88,44 @@
             <view class="weui-btn-area">
                 <button class="weui-btn" type="primary" bindtap="doit">计算</button>
             </view>
-
-            <view wx:if="{{result}}" class="weui-form-preview">
-                <view class="weui-form-preview__hd">
-                <view class="weui-form-preview__item">
-                    <view class="weui-form-preview__label">最终收益</view>
-                    <view class="weui-form-preview__value_in-hd">￥{{result}}</view>
-                </view>
-                </view>
+            <view wx:if="{{show}}" class="weui-form-preview">
                 <view class="weui-form-preview__bd">
-                <view class="weui-form-preview__item">
-                    <view class="weui-form-preview__label">日收益</view>
-                    <view class="weui-form-preview__value">{{dayInterest}}</view>
-                </view>
-                <view class="weui-form-preview__item">
-                    <view class="weui-form-preview__label">到期本息</view>
-                    <view class="weui-form-preview__value">{{total}}</view>
-                </view>
+                    <view class="weui-form-preview__table">
+                        <view class="weui-form-preview__td">计算结果</view>
+                        <view class="weui-form-preview__td">缩短还款期限</view>
+                        <view class="weui-form-preview__td">减少月还款额</view>
+                    </view>
+                    <view class="weui-form-preview__table">
+                        <view class="weui-form-preview__td">已还利息</view>
+                        <view class="weui-form-preview__td" style="width:70%;text-align:center;">{{doInterest}}</view>
+                    </view>
+                    <view class="weui-form-preview__table">
+                        <view class="weui-form-preview__td">已还本金</view>
+                        <view class="weui-form-preview__td" style="width:70%;text-align:center;">{{doP}}</view>
+                    </view>
+                    <view class="weui-form-preview__table">
+                        <view class="weui-form-preview__td">已还总额</view>
+                        <view class="weui-form-preview__td" style="width:70%;text-align:center;">{{doS}}</view>
+                    </view>
+                    <view class="weui-form-preview__table">
+                        <view class="weui-form-preview__td">下月还款额</view>
+                        <view class="weui-form-preview__td" style="width:70%;text-align:center;">{{next}}</view>
+                    </view>
+                    <view class="weui-form-preview__table">
+                        <view class="weui-form-preview__td">节省利息</view>
+                        <view class="weui-form-preview__td">{{mfInterest}}</view>
+                        <view class="weui-form-preview__td">{{pfInterest}}</view>
+                    </view>
+                    <view class="weui-form-preview__table">
+                        <view class="weui-form-preview__td">新月还款额</view>
+                        <view class="weui-form-preview__td">{{mfPay}}</view>
+                        <view class="weui-form-preview__td">{{pfPay}}</view>
+                    </view>
+                    <view class="weui-form-preview__table">
+                        <view class="weui-form-preview__td">新还款期限</view>
+                        <view class="weui-form-preview__td">{{mfEnd}}</view>
+                        <view class="weui-form-preview__td">{{pfEnd}}</view>
+                    </view>
                 </view>
             </view>
     </view>
