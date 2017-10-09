@@ -1,8 +1,6 @@
 {
-  "name": "weui-wxss",
+  "name": "welicai-wxapp",
   "version": "1.1.1",
-  "description": "weui-wxss",
-  "main": "dist/style/weui.wxss",
   "directories": {
     "example": "example"
   },
@@ -12,15 +10,17 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/weui/weui-wxss/"
+    "url": "https://github.com/ksky521/welicai-wxapp/"
   },
-  "homepage": "https://github.com/weui/weui-wxss",
+  "homepage": "https://github.com/ksky521/welicai-wxapp",
   "keywords": [
+    "weapp",
+    "welicai",
     "weui",
     "wxss"
   ],
-  "author": "wechat ui team",
-  "license": "MIT",
+  "author": "ksky521@gmail.com",
+  "license": "GPL",
   "devDependencies": {
     "autoprefixer": "^6.5.1",
     "gulp": "^3.9.1",
