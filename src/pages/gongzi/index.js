@@ -51,6 +51,12 @@ for (let i in cityMap) {
     cityPys.push(i);
 }
 Page({
+    onShareAppMessage: function(res) {
+        return {
+            title: '工资个税计算器：到手工资怎么这么少，工资都哪里去了。。',
+            imageUrl: '/image/logo.png'
+        };
+    },
     data: {
         // 数据
         canvasWidth: windowWidth,

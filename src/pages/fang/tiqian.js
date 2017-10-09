@@ -9,6 +9,12 @@ const start = dateFormat(Date.now() - 10 * 365 * 3600 * 24 * 1e3, 'yyyy-MM');
 const end = dateFormat(Date.now() + 5 * 365 * 3600 * 24 * 1e3, 'yyyy-MM');
 const fmonth = dateFormat(Date.now(), 'yyyy-MM');
 Page({
+    onShareAppMessage: function(res) {
+        return {
+            title: '房贷提前还款计算器：房贷提前还款怎么选择后续贷款方式？',
+            imageUrl: '/image/logo.png'
+        };
+    },
     data: {
         // 数据
         money: 0,

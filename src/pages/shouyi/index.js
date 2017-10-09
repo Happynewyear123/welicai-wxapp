@@ -4,6 +4,12 @@ for (let i = 1; i <= 50; i++) {
 }
 
 Page({
+    onShareAppMessage: function(res) {
+        return {
+            title: '理财产品收益计算器：精确掌握理财产品收益，不被忽悠',
+            imageUrl: '/image/logo.png'
+        };
+    },
     data: {
         // 数据
         money: 10,

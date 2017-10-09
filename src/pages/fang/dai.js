@@ -5,6 +5,12 @@ for (let i = 1; i <= 30; i++) {
 const excel = require('../../utils/excel.js');
 
 Page({
+    onShareAppMessage: function(res) {
+        return {
+            title: '房贷计算器：明明白白还房贷',
+            imageUrl: '/image/logo.png'
+        };
+    },
     data: {
         // 数据
         money: 0,

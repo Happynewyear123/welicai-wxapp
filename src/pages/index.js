@@ -1,4 +1,10 @@
 Page({
+    onShareAppMessage: function(res) {
+        return {
+            title: '微理财计算器',
+            imageUrl: '/image/logo.png'
+        };
+    },
     data: {
         list: [
             {

@@ -5,6 +5,12 @@ for (let i = 1; i <= 50; i++) {
 }
 
 Page({
+    onShareAppMessage: function(res) {
+        return {
+            title: '保险收益计算器：返现型保险是否真的合算呢？',
+            imageUrl: '/image/logo.png'
+        };
+    },
     data: {
         // 数据
         fmoney: 0,

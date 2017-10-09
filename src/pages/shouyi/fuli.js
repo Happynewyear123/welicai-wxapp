@@ -1,4 +1,10 @@
 Page({
+    onShareAppMessage: function(res) {
+        return {
+            title: '复利计算器：一笔钱循环购买一款理财产品，计算收益率',
+            imageUrl: '/image/logo.png'
+        };
+    },
     data: {
         // 数据
         money: 0,

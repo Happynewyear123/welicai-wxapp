@@ -9,6 +9,12 @@ for (let i = 1; i <= 30; i++) {
 const excel = require('../../utils/excel.js');
 
 Page({
+    onShareAppMessage: function(res) {
+        return {
+            title: '买房投资计算器：手上的钱是买房合适还是选择个好的投资产品合适？',
+            imageUrl: '/image/logo.png'
+        };
+    },
     data: {
         // 数据
         total: 0,

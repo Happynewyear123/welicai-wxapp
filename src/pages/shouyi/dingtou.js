@@ -1,6 +1,12 @@
 const excel = require('../../utils/excel.js');
 
 Page({
+    onShareAppMessage: function(res) {
+        return {
+            title: '定投计算器：定期固定投入一笔钱，n年之后计算下收益',
+            imageUrl: '/image/logo.png'
+        };
+    },
     data: {
         // 数据
         money: 0,

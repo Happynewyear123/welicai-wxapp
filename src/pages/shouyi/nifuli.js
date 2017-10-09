@@ -1,6 +1,12 @@
 const excel = require('../../utils/excel.js');
 
 Page({
+    onShareAppMessage: function(res) {
+        return {
+            title: '逆复利计算器：选择合适理财产品来预测未来收益',
+            imageUrl: '/image/logo.png'
+        };
+    },
     data: {
         // 数据
         target: 0,
